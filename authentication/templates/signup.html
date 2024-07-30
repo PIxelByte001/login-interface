@@ -1,0 +1,100 @@
+{% extends 'extendedbase.html' %}
+
+{% block title %}Signup{% endblock %}
+
+{% block body-content %}
+<main class="form-signup w-100 m-auto py-4 px-4">
+    <div class="form-container my-5">
+        <h2 class="text-center mb-4">Signup</h2>
+        <form action="{% url 'signup' %}" method="POST" id="signupForm">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="mb-3 col-md-4">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" required="">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" required="">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="username" class="form-label">Choose a username</label>
+                    <div class="input-group">
+                        <div class="input-group-text">@</div>
+                        <input class="form-control" placeholder="Username" type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" aria-describedby="id_username_helptext" id="username">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-between">
+                <label class="mb-3 col-md-auto" for="choice" class="form-label">I am a:</label>
+                <div class="mb-3 col-md-auto" id="choice">
+                    <label for="doctor" class="form-label">Doctor</label>
+                    <input type="radio" id="doctor" name="type" value="doctor" required>
+                </div>
+                <div class="mb-3 col-md-auto" id="choice">
+                    <label for="patient" class="form-label">Patient</label>
+                    <input type="radio" id="patient" name="type" value="doctor" required>
+                </div>
+                <div class="mb-3 col-md-auto">
+                    Choose a profile pic
+                </div>
+                <div class="mb-3 col-md-auto">
+                    <input type="file" class="form-control" name="photograph" id="photograph" accept="image/*" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="email" class="form-label">Email</label>
+                    <input class="form-control" placeholder="Email" type="email" name="email" maxlength="150" id="email">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="mb-3 col-md-8">
+                    <label for="address" class="form-label">Address line</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Address Line" required="">
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="pincode" class="form-label">Pincode</label>
+                    <input type="number" class="form-control" id="pincode" name="pincode" placeholder="ZIP code" required="" maxlength="7">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="City" required="">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" class="form-control" id="state" name="state" placeholder="State" required="">
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="password">Password:</label>
+                    <input class="form-control" type="password" name="password" placeholder="Password" autocomplete="new-password" required="" aria-invalid="true" aria-describedby="id_password1_helptext" id="password">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="password2">Password confirmation:</label>
+                    <input class="form-control" type="password" name="password2" placeholder="Confirm Password" autocomplete="new-password" required="" aria-describedby="id_password2_helptext" id="password2">
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            
+            <center>
+                <div class="is-invalid"></div>
+                <div class="mb-3 invalid-feedback">{{ message }}</div>
+                <button id="submit" type="submit" class="btn btn-primary">Signup</button><br><br>
+                Already a member? <a href="{% url 'login' %}">Login</a>
+            </center>
+        </form>
+    </div>
+</main>
+{% endblock %}
